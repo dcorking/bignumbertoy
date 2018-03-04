@@ -12,8 +12,7 @@ fn main() {
     println!("Hello, {} grains of sand!", &billion * &billion);
     println!("Hello, {} atoms!", &billion * &billion * &billion);
 
-    let one: BigDecimal = One::one();
-    let billionth = one / BigDecimal::new(billion.clone(), 0);
+    let billionth = BigDecimal::one() / BigDecimal::new(billion.clone(), 0);
     println!("billionth: {}", &billionth);
     println!("billionth of a billionth: {}", &billionth * & billionth);
     println!("billionth of a billionth of a billionth: {} or {}",
