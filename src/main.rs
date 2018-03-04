@@ -1,7 +1,9 @@
 extern crate bigdecimal;
 extern crate num_bigint;
+extern crate num_traits;
 
 use bigdecimal::BigDecimal;
+use num_traits::One;
 use num_bigint::BigInt;
 
 fn main() {
@@ -10,7 +12,7 @@ fn main() {
     println!("Hello, {} grains of sand!", &billion * &billion);
     println!("Hello, {} atoms!", &billion * &billion * &billion);
 
-    let one: BigDecimal = "1".parse().unwrap();
+    let one: BigDecimal = One::one();
     let billionth = one / BigDecimal::new(billion.clone(), 0);
     println!("billionth: {}", &billionth);
     println!("billionth of a billionth: {}", &billionth * & billionth);
