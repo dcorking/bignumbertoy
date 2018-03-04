@@ -1,10 +1,12 @@
 extern crate bigdecimal;
 extern crate num_bigint;
 extern crate num_traits;
+extern crate rustc_serialize;
 
 use bigdecimal::BigDecimal;
 use num_traits::One;
 use num_bigint::BigInt;
+use rustc_serialize::{Encodable, Encoder};
 
 // silly trait
 pub trait Speak {
@@ -15,6 +17,14 @@ impl Speak for BigDecimal {
     fn speak(&self) -> &str {
         println!("Barking.");
         "Woof!"
+    }
+}
+
+pub struct SmallThing(BigDecimal);
+
+impl Encodable for SmallThing {
+    fn encode<S>(&self, s:SmallThing) -> Result<&str,rustc_serialize::Encoder::Error> {
+        "Boo!"
     }
 }
 
