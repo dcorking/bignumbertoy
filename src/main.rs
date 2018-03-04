@@ -11,10 +11,12 @@ fn main() {
     println!("Hello, {} atoms!", &billion * &billion * &billion);
 
     let one: BigDecimal = "1".parse().unwrap();
-    let billionth = one / BigDecimal::new(billion, 0);
+    let billionth = one / BigDecimal::new(billion.clone(), 0);
     println!("billionth: {}", &billionth);
     println!("billionth of a billionth: {}", &billionth * & billionth);
-    println!("billionth of a billionth of a billionth: {}", &billionth * &billionth * & billionth);
+    println!("billionth of a billionth of a billionth: {} or {}",
+             &billionth * &billionth * & billionth,
+             &billionth / BigDecimal::new(billion.clone(), 0) / BigDecimal::new(billion.clone(), 0));
 
     let thirty_digits: BigDecimal = "123456789012345678901234567890".parse().unwrap();
     let downscaled_thirty = thirty_digits.clone().with_scale(-18);
