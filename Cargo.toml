@@ -4,5 +4,5 @@ version = "0.1.0"
 authors = ["David Corking <dmc-source@dcorking.com>"]
 
 [dependencies]
-
+bigdecimal = "0.0.10"
 num-bigint = "0.1"
