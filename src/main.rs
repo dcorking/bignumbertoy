@@ -14,10 +14,9 @@ fn main() {
     let billionth = one / BigDecimal::new(billion, 0);
     println!("billionth: {}", &billionth);
     println!("billionth of a billionth: {}", &billionth * & billionth);
+    println!("billionth of a billionth of a billionth: {}", &billionth * &billionth * & billionth);
 
-    let atto_things: BigDecimal = "123456789012345678901234567890".parse().unwrap();
-    let atto_things = atto_things.with_scale(-18);
-    // I expected 0.123456789012345678901234567890 but
-    // I got 123456789012000000000000000000
-    println!("LACK OF atto precision: {}", atto_things);
+    let thirty_digits: BigDecimal = "123456789012345678901234567890".parse().unwrap();
+    let downscaled_thirty = thirty_digits.clone().with_scale(-18);
+    println!("If you downscale a BigDecimal like this: {}, you will lose precision and end up with this: {}", &thirty_digits, &downscaled_thirty);
 }
