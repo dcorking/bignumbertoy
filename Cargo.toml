@@ -1,0 +1,8 @@
+[package]
+name = "bignumbertoy"
+version = "0.1.0"
+authors = ["David Corking <dmc-source@dcorking.com>"]
+
+[dependencies]
+
+num-bigint = "0.1"
