@@ -6,6 +6,7 @@ extern crate rustc_serialize;
 use bigdecimal::BigDecimal;
 use num_traits::One;
 use num_bigint::BigInt;
+// not used yet:
 use rustc_serialize::{Encodable, Encoder};
 
 // silly trait
@@ -20,13 +21,18 @@ impl Speak for BigDecimal {
     }
 }
 
+// error: cannot find derive macro `Display` in this scope
+//   --> src/main.rs:23:10
+//    |
+// 23 | #[derive(Display,Debug)]
+#[derive(Debug)]
 pub struct SmallThing(BigDecimal);
 
-impl Encodable for SmallThing {
-    fn encode<S>(&self, s:SmallThing) -> Result<&str,rustc_serialize::Encoder::Error> {
-        "Boo!"
-    }
-}
+// impl Encodable for SmallThing {
+//     fn encode<S>(&self, s:SmallThing) -> Result<&str,rustc_serialize::Encoder::Error> {
+//         "Boo!"
+//     }
+// }
 
 fn main() {
     // demonstrate BigInt parsing and multiplication
@@ -54,6 +60,13 @@ fn main() {
              &billion_billion, &divided_thirty,
              &billion_billion, &divided_thirty);
 
+    // demonstrate the silly Speak trait that I created and implemented on a crate class
     let sound = billion_billion.speak();
-    println!("The sound it made: {}", sound);
+    println!("\nThe sound it made: {}", sound);
+
+    //  println!("\nDivided thirty as JSON: {}", rustc_serialize::json::as_json(&divided_thirty));
+    //                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `rustc_serialize::Encodable` is not implemented for `bigdecimal::BigDecimal`
+
+    let small_thirty = SmallThing(divided_thirty);
+    println!("\nThirty digits, cast to a custom type, SmallThing, internally:\n{:#?}", &small_thirty);
 }
